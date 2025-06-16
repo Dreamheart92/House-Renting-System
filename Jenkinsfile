@@ -2,6 +2,19 @@ pipeline{
     agent any
 
     stages{
+        stage('Install .NET 6.0') {
+                    steps {
+                        script {
+                            sh '''
+                                if ! dotnet --list-runtimes | grep -q "Microsoft.NETCore.App 6.0"; then
+                                    curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 6.0
+                                    export PATH=$PATH:$HOME/.dotnet
+                                fi
+                            '''
+                        }
+                    }
+                }
+
         stage('MS Restore') {
             steps {
                 script {
