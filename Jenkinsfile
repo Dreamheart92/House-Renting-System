@@ -1,7 +1,7 @@
 pipeline{
     agent any
 
-    stages(
+    stages{
         stage('MS Restore') {
             steps {
                 script {
@@ -28,5 +28,5 @@ pipeline{
                 }
             }
         }
-    )
+    }
 }
